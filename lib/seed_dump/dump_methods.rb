@@ -87,7 +87,10 @@ class SeedDump
         io.write(",\n  ") unless last_batch
       end
 
-      io.write("\n])\n")
+      io.write("\n]")
+      io.write(", validate: false") if options[:ignore_validations]
+      io.write(", timestamps: false") if options[:ignore_timestamps]
+      io.write(")\n")
 
       if options[:file].present?
         nil
